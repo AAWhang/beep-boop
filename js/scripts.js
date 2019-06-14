@@ -21,11 +21,12 @@ $(document).ready(function(){
     }
 
     for (var j = 0; j < beepArray.length; j++) {
-      if (beepArray[j] === 3) {
+      var arrayCheck = beepArray[j].toString();
+      if (arrayCheck.includes("3")) {
         beepArray[j] = "three";
-      } else if (beepArray[j] === 2) {
+      } else if (arrayCheck.includes("2")) {
         beepArray[j] = "two";
-      } else if (beepArray[j] === 1) {
+      } else if (arrayCheck.includes("1")) {
         beepArray[j] = "one";
       }
       alert(beepArray[j]);
