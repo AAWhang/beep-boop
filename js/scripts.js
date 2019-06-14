@@ -25,12 +25,16 @@ function precheck(bV){                                               //Because o
   }
 }
 
-function checkPrint(bA){                                              //Because of the second button outside the form, makes more senese to move check and print into a function
+function checkPrint(bA, bN){                                          //Because of the second button outside the form, makes more senese to move check and print into a function
   for (var j = 0; j < bA.length; j++) {                               //will run for every value in an array
     var arrayCheck = bA[j].toString();
 
+    if (bN.length == 0) {                                             //Adds a default name if no input is given
+      bN = "Dave";
+    }
+
     if (arrayCheck.includes("3")) {                                   //checks if a numeral is in the array, priority 3, 2, 1.
-      bA[j] = "I'm sorry, Dave. I'm afraid I can't do that.";
+      bA[j] = "I'm sorry, " + bN + ". I'm afraid I can't do that.";
     } else if (arrayCheck.includes("2")) {
       bA[j] = "Boop!";
     } else if (arrayCheck.includes("1")) {
@@ -45,22 +49,24 @@ $(document).ready(function(){
 
   $("form#beep").submit(function(event) {
     event.preventDefault();
-    var beepVar = parseInt($("input#boop").val());                    //user input
+    var beepVar = parseInt($("input#boop").val());                    //user input number
+    var beepName = $("input#boopName").val();                         //user input name
     var beepArray = [];
 
      arrayFill(beepVar, beepArray);                                   //Takes user input and fills an array counting up to user input number
-     precheck(beepArray);                                             //clears output and checks if user number is valid
-     checkPrint(beepArray);                                           //handles array value checks and prints to webpage
+     precheck(beepVar);                                               //clears output and checks if user number is valid
+     checkPrint(beepArray, beepName);                                 //handles array value checks and prints to webpage
  });
 
  document.getElementById('btn2').onclick = function() {
-   var beepVar = parseInt($("input#boop").val());                      //user input
+   var beepVar = parseInt($("input#boop").val());                      //user input number
+   var beepName = $("input#boopName").val();                           //user input name
    var beepArray = [];
 
      arrayFill(beepVar, beepArray);                                    //Takes user input and fills an array counting up to user input number
-     precheck(beepArray);                                              //clears output and checks if user number is valid
+     precheck(beepVar);                                                //clears output and checks if user number is valid
      beepArray.reverse();                                              //reverses array before print
-     checkPrint(beepArray);                                            //handles array value checks and prints to webpage
+     checkPrint(beepArray, beepName);                                  //handles array value checks and prints to webpage
 }
 
 
