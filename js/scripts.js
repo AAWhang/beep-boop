@@ -15,9 +15,17 @@ $(document).ready(function(){
     event.preventDefault();
     var beepVar = parseInt($("input#boop").val());
     var beepArray = [];
-      for (var i = 0; i <= beepVar; i++) {
-        beepArray.push(i);
-      }
+
+    for (var i = 0; i <= beepVar; i++) {
+      beepArray.push(i);
+    }
+
+    for (var j = 0; j < beepArray.length; j++) {
+      alert(beepArray[j]);
+    }
+
+
+
 
     alert(beepArray);
 
