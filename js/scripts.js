@@ -21,6 +21,13 @@ $(document).ready(function(){
     }
 
     for (var j = 0; j < beepArray.length; j++) {
+      if (beepArray[j] === 3) {
+        beepArray[j] = "three";
+      } else if (beepArray[j] === 2) {
+        beepArray[j] = "two";
+      } else if (beepArray[j] === 1) {
+        beepArray[j] = "one";
+      }
       alert(beepArray[j]);
     }
 
