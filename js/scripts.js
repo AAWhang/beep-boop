@@ -10,47 +10,59 @@
 //make a new button that will reverse the output from highest to lowest
 //add a name form that will replace "Dave" in the 3 condition
 
+function arrayFill(bV, bA){                                         //Because of the second button outside the form, makes more senese to move array filler into a function
+  for (var i = 0; i <= bV; i++) {                                   //makes an array filled with numbers counting up until user inputted number is reached
+    bA.push(i);
+  }
+}
+
+function precheck(bV){                                               //Because of the second button outside the form, makes more senese to move clear and number check into a function
+  $("#beep-result").empty();                                         //will empty div #beep-results
+
+  if (isNaN(bV) || bV <= 0) {                                        //Will check if inputted number is not a number or negative, ends function if true
+    $("#beep-result").append("<li>" + "Please enter a positive number." + "</li>");
+    return;
+  }
+}
+
+function checkPrint(bA){                                              //Because of the second button outside the form, makes more senese to move check and print into a function
+  for (var j = 0; j < bA.length; j++) {                               //will run for every value in an array
+    var arrayCheck = bA[j].toString();
+
+    if (arrayCheck.includes("3")) {                                   //checks if a numeral is in the array, priority 3, 2, 1.
+      bA[j] = "I'm sorry, Dave. I'm afraid I can't do that.";
+    } else if (arrayCheck.includes("2")) {
+      bA[j] = "Boop!";
+    } else if (arrayCheck.includes("1")) {
+      bA[j] = "Beep!";
+    }
+
+    $("#beep-result").append("<li>" + bA[j] + "</li>");               //before for loop ends, prints the value in the array to the web page
+  }
+}
+
 $(document).ready(function(){
+
   $("form#beep").submit(function(event) {
     event.preventDefault();
     var beepVar = parseInt($("input#boop").val());                    //user input
     var beepArray = [];
 
-
-    $("#beep-result").empty();                                        //will empty div #beep-results
-
-    if (isNaN(beepVar) || beepVar <= 0) {                             //Will check if inputted number is not a number or negative, ends function if true
-      $("#beep-result").append("<li>" + "Please enter a positive number." + "</li>");
-      return;
-    }
-
-    for (var i = 0; i <= beepVar; i++) {                              //makes an array filled with numbers counting up until user inputted number is reached
-      beepArray.push(i);
-    }
-
-    for (var j = 0; j < beepArray.length; j++) {                      //will run for every value in an array
-      var arrayCheck = beepArray[j].toString();
-
-      if (arrayCheck.includes("3")) {                                 //checks if a numeral is in the array, priority 3, 2, 1.
-        beepArray[j] = "I'm sorry, Dave. I'm afraid I can't do that.";
-      } else if (arrayCheck.includes("2")) {
-        beepArray[j] = "Boop!";
-      } else if (arrayCheck.includes("1")) {
-        beepArray[j] = "Beep!";
-      }
-
-      $("#beep-result").append("<li>" + beepArray[j] + "</li>");       //before for loop ends, prints the value in the array to the web page
-    }
-
-
-
-
-
-
-
-
-
-
-
+     arrayFill(beepVar, beepArray);                                   //Takes user input and fills an array counting up to user input number
+     precheck(beepArray);                                             //clears output and checks if user number is valid
+     checkPrint(beepArray);                                           //handles array value checks and prints to webpage
  });
+
+ document.getElementById('btn2').onclick = function() {
+   var beepVar = parseInt($("input#boop").val());                      //user input
+   var beepArray = [];
+
+     arrayFill(beepVar, beepArray);                                    //Takes user input and fills an array counting up to user input number
+     precheck(beepArray);                                              //clears output and checks if user number is valid
+     beepArray.reverse();                                              //reverses array before print
+     checkPrint(beepArray);                                            //handles array value checks and prints to webpage
+}
+
+
+
 });
