@@ -1,5 +1,40 @@
+body {
+  color: black;
+  font-weight: bolder;
+  font-size: 20px;
+  background-image: url("../img/space.jpg");
+  background-size: cover;
+}
+
+.container {
+  background-image: url("../img/metal.jpg");
+  background-size: cover;
+}
+
+h1 {
+  color: red;
+  text-align: center;
+  background-color: black;
+  opacity:0.7;
+  font-size: 50px;
+
+}
+
 img#hal {
   width: 30px;
   height: 30px;
   border-radius: 50%;
+}
+
+
+form#beep {
+  background-color: #cccccc;
+  opacity:0.7;
+  font-size: 25px;
+}
+
+#beep-result {
+  background-color: white;
+  opacity:0.6;
+  font-size: 25px;
 }
