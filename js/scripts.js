@@ -26,6 +26,7 @@ function precheck(bV){                                               //Because o
 }
 
 function checkPrint(bA, bN){                                          //Because of the second button outside the form, makes more senese to move check and print into a function
+  var hals = 0;
   for (var j = 0; j < bA.length; j++) {                               //will run for every value in an array
     var arrayCheck = bA[j].toString();
 
@@ -35,19 +36,25 @@ function checkPrint(bA, bN){                                          //Because 
 
     if (arrayCheck.includes("3")) {                                   //checks if a numeral is in the array, priority 3, 2, 1.
       bA[j] = "I'm sorry, " + bN + ". I'm afraid I can't do that.";
+      hals++;
     } else if (arrayCheck.includes("2")) {
       bA[j] = "Boop!";
     } else if (arrayCheck.includes("1")) {
       bA[j] = "Beep!";
     }
 
-    $("#beep-result").append("<li>" + bA[j] + "</li>");               //before for loop ends, prints the value in the array to the web page
+    $("#beep-result").append("<li>" + bA[j]);                         //before for loop ends, prints the value in the array to the web page
+    if (arrayCheck.includes("3")) {                                   //Adds hal image after every 3 condition, increasing every time 3 condition is triggered, can't think of a quick soultion to reverse it
+      for (var k = 1; k <= hals; k++) {
+          $("#beep-result").append("<img id='hal' src='img/hal.jpg'>");
+      }
+    }
   }
 }
 
 $(document).ready(function(){
 
-  $("form#beep").submit(function(event) {
+  $("form#beep").submit(function(event) {                             //Main form
     event.preventDefault();
     var beepVar = parseInt($("input#boop").val());                    //user input number
     var beepName = $("input#boopName").val();                         //user input name
@@ -58,7 +65,7 @@ $(document).ready(function(){
      checkPrint(beepArray, beepName);                                 //handles array value checks and prints to webpage
  });
 
- document.getElementById('btn2').onclick = function() {
+ document.getElementById('btn2').onclick = function() {                //Alternate reverse button
    var beepVar = parseInt($("input#boop").val());                      //user input number
    var beepName = $("input#boopName").val();                           //user input name
    var beepArray = [];
