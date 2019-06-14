@@ -13,8 +13,13 @@
 $(document).ready(function(){
   $("form#beep").submit(function(event) {
     event.preventDefault();
-    var romanVar = parseInt($("input#boop").val());
-    alert(romanVar);
+    var beepVar = parseInt($("input#boop").val());
+    var beepArray = [];
+      for (var i = 0; i <= beepVar; i++) {
+        beepArray.push(i);
+      }
+
+    alert(beepArray);
 
 
 
