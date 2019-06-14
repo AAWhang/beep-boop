@@ -15,7 +15,7 @@ $(document).ready(function(){
     event.preventDefault();
     var beepVar = parseInt($("input#boop").val());
     var beepArray = [];
-
+      $("#beep-result").empty();
     for (var i = 0; i <= beepVar; i++) {
       beepArray.push(i);
     }
@@ -23,19 +23,19 @@ $(document).ready(function(){
     for (var j = 0; j < beepArray.length; j++) {
       var arrayCheck = beepArray[j].toString();
       if (arrayCheck.includes("3")) {
-        beepArray[j] = "three";
+        beepArray[j] = "I'm sorry, Dave. I'm afraid I can't do that.";
       } else if (arrayCheck.includes("2")) {
-        beepArray[j] = "two";
+        beepArray[j] = "Boop!";
       } else if (arrayCheck.includes("1")) {
-        beepArray[j] = "one";
+        beepArray[j] = "Beep!";
       }
-      alert(beepArray[j]);
+      // alert(beepArray[j]);
+      $("#beep-result").append("<li>" + beepArray[j] + "</li>");
     }
 
 
 
 
-    alert(beepArray);
 
 
 
