@@ -13,24 +13,33 @@
 $(document).ready(function(){
   $("form#beep").submit(function(event) {
     event.preventDefault();
-    var beepVar = parseInt($("input#boop").val());
+    var beepVar = parseInt($("input#boop").val());                    //user input
     var beepArray = [];
-      $("#beep-result").empty();
-    for (var i = 0; i <= beepVar; i++) {
+
+
+    $("#beep-result").empty();                                        //will empty div #beep-results
+
+    if (isNaN(beepVar) || beepVar <= 0) {                             //Will check if inputted number is not a number or negative, ends function if true
+      $("#beep-result").append("<li>" + "Please enter a positive number." + "</li>");
+      return;
+    }
+
+    for (var i = 0; i <= beepVar; i++) {                              //makes an array filled with numbers counting up until user inputted number is reached
       beepArray.push(i);
     }
 
-    for (var j = 0; j < beepArray.length; j++) {
+    for (var j = 0; j < beepArray.length; j++) {                      //will run for every value in an array
       var arrayCheck = beepArray[j].toString();
-      if (arrayCheck.includes("3")) {
+
+      if (arrayCheck.includes("3")) {                                 //checks if a numeral is in the array, priority 3, 2, 1.
         beepArray[j] = "I'm sorry, Dave. I'm afraid I can't do that.";
       } else if (arrayCheck.includes("2")) {
         beepArray[j] = "Boop!";
       } else if (arrayCheck.includes("1")) {
         beepArray[j] = "Beep!";
       }
-      // alert(beepArray[j]);
-      $("#beep-result").append("<li>" + beepArray[j] + "</li>");
+
+      $("#beep-result").append("<li>" + beepArray[j] + "</li>");       //before for loop ends, prints the value in the array to the web page
     }
 
 
